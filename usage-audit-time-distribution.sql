@@ -11,7 +11,7 @@ select (case when process_time<10                      then '01. <10'
              when process_time between 1001  and 5000  then '09. 1000-5000'
              when process_time between 5001  and 10000 then '10. 5000-1000'
              when process_time between 10001 and 50000 then '11. 10000-50000'
-             else                                           '12. >50000' end) as time, count(*))
+             else                                           '12. >50000' end) as time, count(*)
 from ad_session_usage_audit 
 group by 1
 order by 1;
