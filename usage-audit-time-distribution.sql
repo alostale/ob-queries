@@ -1,4 +1,4 @@
-select min(created) from ad_session_usage_audit;
+select count(*), to_char(min(created), 'YYYY-MM-DD') first_entry, to_char(now(), 'YYYY-MM-DD') now from ad_session_usage_audit;
 
 select (case when process_time<10                      then '01. <10' 
              when process_time between 11    and 50    then '02. 10-50'
