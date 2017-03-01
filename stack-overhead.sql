@@ -15,4 +15,6 @@ union
 select '3. USAGE', sum(calls) calls, sum(total_time) total_time, substring(trim(query),0,100) as qry from pg_stat_statements where query ilike '%INSERT INTO ad_session_usage_audit%'  group by qry
 union
 select '3. SESSION PING', sum(calls) calls, sum(total_time) total_time, trim(query) from pg_stat_statements where query ilike '%update ad_session%SET last_session_ping%' group by trim(query)
+union
+select '4. AD_LANGUAGE', sum(calls) calls, sum(total_time) total_time, trim(query) from pg_stat_statements where query like '%from AD_Language%' group by trim(query)
 order by 1,2;
