@@ -17,4 +17,7 @@ union
 select '3. SESSION PING', sum(calls) calls, sum(total_time) total_time, trim(query) from pg_stat_statements where query ilike '%update ad_session%SET last_session_ping%' group by trim(query)
 union
 select '4. AD_LANGUAGE', sum(calls) calls, sum(total_time) total_time, substring(trim(query),0,100) as qry from pg_stat_statements where query like 'select adlanguage0_.AD_Language_ID as AD1_55_0_%from AD_Language%' group by qry
+union
+select '5. BP SEL DR DW',sum(calls) calls, sum(total_time) total_time, substring(trim(query),0,100) as qry from pg_stat_statements where query ilike '%Upper(businesspa0_.value) LIKE Upper%' group by qry
+
 order by 1,2;
